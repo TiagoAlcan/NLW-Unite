@@ -1,77 +1,73 @@
-
-//let assume um valor que pode ser alterado, enquanto o const não
-//lista [] - guarda diversos objetos
 let participantes = [
     {
-        nome: "Tiago Gomes",
-        email: "tiago@gmail.com",
-        dataIncricao: new Date(2024, 7, 21, 21, 30),
-        dataCheckIn: new Date(2024, 8, 3, 19, 20)
+      nome: "Diego Fernandes",
+      email: "diego@gmail.com",
+      dataInscricao: new Date(2024, 2, 1, 19, 23),
+      dataCheckIn: new Date(2024, 2, 1, 20, 20)
     },
     {
-        nome: "Gabriel Catanzaro",
-        email: "gabriel@gmail.com",
-        dataIncricao: new Date(2024, 6, 15, 6, 30),
-        dataCheckIn: new Date(2024, 6, 16, 17, 45)
+      nome: "Mayk Brito",
+      email: "mayk@gmail.com",
+      dataInscricao: new Date(2024, 2, 23, 19, 23),
+      dataCheckIn: new Date(2024, 2, 25, 20, 20)
     },
     {
-        nome: "Maria Silva",
-        email: "maria@gmail.com",
-        dataIncricao: new Date(2024, 5, 10, 10, 0),
-        dataCheckIn: new Date(2024, 5, 11, 12, 15)
+      nome: "Ana Souza",
+      email: "ana@gmail.com",
+      dataInscricao: new Date(2024, 0, 3, 19, 23),
+      dataCheckIn: new Date(2024, 0, 4, 20, 20)
     },
     {
-        nome: "José Oliveira",
-        email: "jose@gmail.com",
-        dataIncricao: new Date(2024, 4, 25, 14, 45),
-        dataCheckIn: new Date(2024, 5, 1, 9, 30)
+      nome: "João Silva",
+      email: "joao@gmail.com",
+      dataInscricao: new Date(2023, 11, 4, 19, 23),
+      dataCheckIn: new Date(2023, 11, 5, 20, 20)
     },
     {
-        nome: "Ana Santos",
-        email: "ana@gmail.com",
-        dataIncricao: new Date(2024, 3, 8, 8, 0),
-        dataCheckIn: new Date(2024, 3, 10, 16, 20)
+      nome: "Maria Oliveira",
+      email: "maria@gmail.com",
+      dataInscricao: new Date(2023, 10, 5, 19, 23),
+      dataCheckIn: new Date(2023, 10, 6, 20, 20)
     },
     {
-        nome: "Carlos Mendes",
-        email: "carlos@gmail.com",
-        dataIncricao: new Date(2024, 2, 14, 11, 15),
-        dataCheckIn: new Date(2024, 2, 15, 14, 45)
+      nome: "Pedro Santos",
+      email: "pedro@gmail.com",
+      dataInscricao: new Date(2023, 9, 6, 19, 23),
+      dataCheckIn: new Date(2023, 9, 7, 20, 20)
     },
     {
-        nome: "Fernanda Costa",
-        email: "fernanda@gmail.com",
-        dataIncricao: new Date(2024, 1, 18, 18, 30),
-        dataCheckIn: new Date(2024, 1, 19, 22, 10)
+      nome: "Carla Lima",
+      email: "carla@gmail.com",
+      dataInscricao: new Date(2023, 8, 7, 19, 23),
+      dataCheckIn: new Date(2023, 8, 8, 20, 20)
     },
     {
-        nome: "Rafaela Sousa",
-        email: "rafaela@gmail.com",
-        dataIncricao: new Date(2024, 0, 5, 9, 45),
-        dataCheckIn: new Date(2024, 0, 6, 11, 30)
+      nome: "Lucas Sousa",
+      email: "lucas@gmail.com",
+      dataInscricao: new Date(2023, 7, 8, 19, 23),
+      dataCheckIn: new Date(2023, 7, 9, 20, 20)
     },
     {
-        nome: "Pedro Almeida",
-        email: "pedro@gmail.com",
-        dataIncricao: new Date(2023, 11, 12, 16, 20),
-        dataCheckIn: new Date(2023, 11, 13, 20, 15)
+      nome: "Paula Costa",
+      email: "paula@gmail.com",
+      dataInscricao: new Date(2023, 6, 9, 19, 23),
+      dataCheckIn: new Date(2023, 6, 10, 20, 20)
     },
     {
-        nome: "Sara Pereira",
-        email: "sara@gmail.com",
-        dataIncricao: new Date(2023, 10, 29, 7, 30),
-        dataCheckIn: new Date(2023, 11, 1, 13, 50)
+      nome: "Gabriel Almeida",
+      email: "gabriel@gmail.com",
+      dataInscricao: new Date(2023, 5, 10, 19, 23),
+      dataCheckIn: new Date(2023, 5, 11, 20, 20)
     }
-];
-
-const criarNovoParticipante = (participante) => {
-    const dataIncricao = dayjs(Date.now())
-    .to(participante.dataIncricao);
-
+  ];
+  
+  const criarNovoParticipante = (participante) => {
+    const dataInscricao = dayjs(Date.now())
+    .to(participante.dataInscricao)
+  
     const dataCheckIn = dayjs(Date.now())
-    .to(participante.dataCheckIn);
-
-    //interpolação
+    .to(participante.dataCheckIn)
+    
     return `
     <tr>
       <td>
@@ -91,9 +87,7 @@ const criarNovoParticipante = (participante) => {
   
   const atualizarLista = (participantes) => {
     let output = ""
-    //estrutura de repeticção - loop
     for(let participante of participantes) {
-        //para cada participante de tantos participantes - faca alguma coisa enquanto tiver pessoas nessa lista
       output = output + criarNovoParticipante(participante)
     }
   
