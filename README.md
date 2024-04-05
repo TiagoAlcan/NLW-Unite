@@ -11,6 +11,24 @@
 
 # CSS
 
+*Cascading*
+*StyleSheet*
+
+```css
+/*
+- declarações
+- colocando a virgula (,) você pode selecionar mais de 1 seletor
+- especficidade
+- Css tem influencia sobre o HTML(box model - presente no f12)
+*/
+
+body {
+    background-color: #121214;
+    color:#faebd7;
+}
+
+```
+
 # JavaScript
 ```js
 //variaveis

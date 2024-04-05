@@ -12,7 +12,7 @@ let participantes = [
         nome: "Gabriel Catanzaro",
         email: "gabriel@gmail.com",
         dataInscricao: new Date(2024, 6, 15, 6, 30),
-        dataCheckIn: new Date(2024, 6, 16, 17, 45)
+        dataCheckIn: null
     },
     {
         nome: "Maria Silva",
@@ -24,7 +24,7 @@ let participantes = [
         nome: "José Oliveira",
         email: "jose@gmail.com",
         dataInscricao: new Date(2024, 4, 25, 14, 45),
-        dataCheckIn: new Date(2024, 5, 1, 9, 30)
+        dataCheckIn: null
     },
     {
         nome: "Ana Santos",
@@ -48,13 +48,13 @@ let participantes = [
         nome: "Rafaela Sousa",
         email: "rafaela@gmail.com",
         dataInscricao: new Date(2024, 0, 5, 9, 45),
-        dataCheckIn: new Date(2024, 0, 6, 11, 30)
+        dataCheckIn: null
     },
     {
         nome: "Pedro Almeida",
         email: "pedro@gmail.com",
         dataInscricao: new Date(2023, 11, 12, 16, 20),
-        dataCheckIn: new Date(2023, 11, 13, 20, 15)
+        dataCheckIn: null
     },
     {
         nome: "Sara Pereira",
@@ -66,13 +66,13 @@ let participantes = [
 
 const criarNovoParticipante = (participante) => {
     const dataInscricao = dayjs(Date.now())
-    .to(participante.dataInscricao)
+        .to(participante.dataInscricao)
 
     let dataCheckIn = dayjs(Date.now())
-    .to(participante.dataCheckIn)
+        .to(participante.dataCheckIn)
 
     //condicional
-    if(dataCheckIn == null) {
+    if (participante.dataCheckIn == null) {
         dataCheckIn = `
             <button
                 data-email="${participante.email}"
@@ -99,30 +99,30 @@ const criarNovoParticipante = (participante) => {
       <td>${dataCheckIn}</td>
     </tr>
     `
-  }
-  
-  const atualizarLista = (participantes) => {
+}
+
+const atualizarLista = (participantes) => {
     let output = ""
     //estrutura de repeticção - loop
-    for(let participante of participantes) {
+    for (let participante of participantes) {
         //para cada participante de tantos participantes - faca alguma coisa enquanto tiver pessoas nessa lista
-      output = output + criarNovoParticipante(participante)
+        output = output + criarNovoParticipante(participante)
     }
-  
+
     // substituir informação do HTML
     document
-    .querySelector('tbody')
-    .innerHTML = output
-  }
-  
-  atualizarLista(participantes)
+        .querySelector('tbody')
+        .innerHTML = output
+}
 
-  const adicionarParticipante = (event) => {
+atualizarLista(participantes)
+
+const adicionarParticipante = (event) => {
     //não faca o padrao - que seria enviar o formulario (form)
     event.preventDefault()
 
     const dadosDoFormulario = new FormData(event.target)
-    
+
     const participante = {
         nome: dadosDoFormulario.get('nome'),
         email: dadosDoFormulario.get('email'),
@@ -130,13 +130,38 @@ const criarNovoParticipante = (participante) => {
         dataCheckIn: null
     }
 
+    //vericficar se o participante existe
+    const participanteExistente = participantes.find(
+        //se o return é imediato voce pode tirar das chaves e o return
+        (p) => {
+            return p.email == participante.email
+        }
+    )
+    if (participanteExistente) {
+        alert('Email já cadastrado!')
+        return
+    }
+
     //conceito de spred - espalhar (...participantes - colocando os valores antigos da minha lista na nova lista)
     participantes = [participante, ...participantes]
 
     atualizarLista(participantes)
-  }
 
-  const fazerCheckIn = (event) => {
+    //limpar o formulário
+    //no português - do formulario pesquisa pelo seletor - name que recebe nome e desse cara voce pega o valor e atribui "" (vazio)
+    event.target.querySelector('[name="nome"]').value = ""
+    event.target.querySelector('[name="email"]').value = ""
+}
+
+const fazerCheckIn = (event) => {
+    const mensagemConfirmacao = 'Tem certeza que deseja fazer o check-in?'
+
+    //confirmar se realmente quer o check-in
+    if (confirm(mensagemConfirmacao) == false) {
+        //retorna pro caminho normal sem checar o botão
+        return
+    }
+
     //encontrar o participante dentro da lista
     const participante = participantes.find((p) => {
         return p.email == event.target.dataset.email
@@ -145,4 +170,5 @@ const criarNovoParticipante = (participante) => {
     participante.dataCheckIn = new Date()
     //atualizar a lista de participantes
     atualizarLista(participantes)
-  }
+}
+
