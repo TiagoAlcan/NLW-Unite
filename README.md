@@ -4,9 +4,10 @@
 *Markup*
 *Language*
 
--Composto por tags
+- Composto por tags
     - a href -> é uma tag para tornar um texto clicável e com uma referência 
--Atributos
+    
+- Atributos
 
 # CSS
 
