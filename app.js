@@ -66,10 +66,22 @@ let participantes = [
 
 const criarNovoParticipante = (participante) => {
     const dataInscricao = dayjs(Date.now())
-    .to(participante.dataInscricao);
+    .to(participante.dataInscricao)
 
-    const dataCheckIn = dayjs(Date.now())
-    .to(participante.dataCheckIn);
+    let dataCheckIn = dayjs(Date.now())
+    .to(participante.dataCheckIn)
+
+    //condicional
+    if(dataCheckIn == null) {
+        dataCheckIn = `
+            <button
+                data-email="${participante.email}"
+                onclick="fazerCheckIn(event)"
+            >
+                Confirmar check-in
+            </button>
+        `
+    }
 
     //interpolação
     return `
@@ -104,3 +116,33 @@ const criarNovoParticipante = (participante) => {
   }
   
   atualizarLista(participantes)
+
+  const adicionarParticipante = (event) => {
+    //não faca o padrao - que seria enviar o formulario (form)
+    event.preventDefault()
+
+    const dadosDoFormulario = new FormData(event.target)
+    
+    const participante = {
+        nome: dadosDoFormulario.get('nome'),
+        email: dadosDoFormulario.get('email'),
+        dataInscricao: new Date(),
+        dataCheckIn: null
+    }
+
+    //conceito de spred - espalhar (...participantes - colocando os valores antigos da minha lista na nova lista)
+    participantes = [participante, ...participantes]
+
+    atualizarLista(participantes)
+  }
+
+  const fazerCheckIn = (event) => {
+    //encontrar o participante dentro da lista
+    const participante = participantes.find((p) => {
+        return p.email == event.target.dataset.email
+    })
+    //atualizar o check-in do participante
+    participante.dataCheckIn = new Date()
+    //atualizar a lista de participantes
+    atualizarLista(participantes)
+  }

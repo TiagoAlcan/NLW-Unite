@@ -42,4 +42,13 @@ let participantes = [
 for(let participante of participantes){
         //para cada participante de tantos participantes - faca alguma coisa enquanto tiver pessoas nessa lista
     }
+
+const adicionarParticipante = (event) => {
+//não faca o padrao - que seria enviar o formulario (form)
+event.preventDefault
+const dadosDoFormulario = new FormData(event.target)
+
+//Testando para ver se estamos pegando os dados do formulario
+alert(dadosDoFormulario.get('email'))
+}
 ```
