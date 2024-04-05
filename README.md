@@ -24,7 +24,7 @@ alert(mensagem);
 const participante = {
     nome: "Tiago Gomes",
     email: "tiago@gmail.com",
-    dataIncricao: new Date(2024, 7, 21, 21, 30),
+    dataInscricao: new Date(2024, 7, 21, 21, 30),
     dataCheckIn: new Date(2024, 8, 3, 19, 20)
 }
 //let assume um valor que pode ser alterado, enquanto o const não
@@ -33,7 +33,7 @@ let participantes = [
     {
         nome: "Tiago Gomes",
         email: "tiago@gmail.com",
-        dataIncricao: new Date(2024, 7, 21, 21, 30),
+        dataInscricao: new Date(2024, 7, 21, 21, 30),
         dataCheckIn: new Date(2024, 8, 3, 19, 20)
     },
 ]
